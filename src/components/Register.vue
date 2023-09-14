@@ -10,7 +10,7 @@
           </h3>
         </div>
 
-        <div class="inputContainer">
+        <form class="inputContainer" @submit.prevent="updatedPassword">
           <input
             class="inputLogin input"
             placeholder="Senha:"
@@ -33,6 +33,10 @@
             @keyup="getPasswordTwo(($event.target as HTMLInputElement).value)"
           />
 
+          <p :class="statusCode == 200 ? 'sucess' : 'error'">
+            {{ apiResponse }}
+          </p>
+
           <button class="eyeIconTwo" @click="showPassord('#pass2')">
             <v-icon
               :icon="eyeIconTwo ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"
@@ -46,14 +50,14 @@
           >
             Salvar
           </button>
-        </div>
+        </form>
       </div>
     </div>
 
     <div class="logoContainer">
-      <Vue3Lottie :animationData="animation" :width="400" />
+      <Vue3Lottie :animationData="animation" :width="400" class="hidden" />
 
-      <h1 class="title">Meu cadastro seguro</h1>
+      <h1 class="title hidden">Meu cadastro seguro</h1>
     </div>
   </div>
 </template>
@@ -62,23 +66,36 @@
 /* eslint-disable no-undef */
 
 import animation from "@/assets/animation.json";
-import { IPassword } from "@/utils/interfaces";
 import { PropType } from "vue";
 
 defineProps({
+  apiResponse: { type: String, required: true },
+
+  statusCode: { type: Number, required: true },
+
   eyeIconOne: { type: Boolean, required: true },
+
   eyeIconTwo: { type: Boolean, required: true },
+
   showButton: { type: Boolean, required: true },
+
   getPasswordOne: {
     type: Function as PropType<(password: string) => void>,
     required: true,
   },
+
   getPasswordTwo: {
     type: Function as PropType<(password: string) => void>,
     required: true,
   },
+
   showPassord: {
     type: Function as PropType<(id: string) => void>,
+    required: true,
+  },
+
+  updatedPassword: {
+    type: Function as PropType<(event: Event) => void>,
     required: true,
   },
 });
@@ -155,10 +172,18 @@ defineProps({
   text-align: center;
 }
 
+.sucess {
+  color: #77ab59;
+}
+
+.error {
+  color: #ff0f00;
+}
+
 .title {
   color: #fff;
   position: absolute;
-  bottom: 4rem;
+  bottom: 8rem;
 }
 
 .submitBtn {
@@ -202,7 +227,7 @@ defineProps({
 
 .eyeIconTwo {
   position: absolute;
-  top: 5.5rem;
+  top: 5rem;
   right: 0;
   height: 26%;
   width: 18%;
@@ -240,11 +265,15 @@ input {
   .glass-effect {
     backdrop-filter: blur(3px);
   }
+
+  .hidden {
+    display: none;
+  }
 }
 
 @media (max-width: 767px) {
   .inputLogin {
-    width: calc(100% - 5rem) !important;
+    width: calc(100% - 0.2rem) !important;
   }
 }
 </style>
