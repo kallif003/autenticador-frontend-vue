@@ -7,6 +7,9 @@ import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
+import { setupClient } from "./clients/AxiosClient";
+
+setupClient(process.env.VUE_APP_BACK);
 
 const vuetify = createVuetify({
   components,

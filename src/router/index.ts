@@ -3,7 +3,7 @@ import Register from "@/containers/RegisterContainer.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/cadastro/:id",
+    path: "/cadastro/:params/:id",
     name: "Cadastro",
     component: Register,
   },
