@@ -21,7 +21,6 @@ import { onMounted } from "vue";
 import { ref, reactive, watch } from "vue";
 import Loading from "@/components/Loading.vue";
 import { Message } from "@/utils/enum";
-import { resolveDirective } from "vue";
 
 let showButton = ref(false);
 let showLoading = ref(false);
@@ -77,7 +76,9 @@ const handleApiResponse = (status: number) => {
 };
 
 const redirect = (data: string) => {
-  window.location.href = data;
+  setTimeout(() => {
+    window.location.href = data;
+  }, 6000);
 };
 
 const showPassord = (id: string) => {

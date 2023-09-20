@@ -1,5 +1,5 @@
 export enum Routes {
-  REDEFINE_PASSWORD = "/api/redefine_password/",
+  CREATE_PASSWORD = "/api/create_password/",
 }
 
 export enum Message {

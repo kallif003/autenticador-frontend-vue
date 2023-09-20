@@ -13,7 +13,7 @@ export const updatePasswordApi = async (
     };
 
     const response = await useClient().put(
-      `${Routes.REDEFINE_PASSWORD}${id}`,
+      `${Routes.CREATE_PASSWORD}${id}`,
       data
     );
 
