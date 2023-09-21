@@ -81,7 +81,9 @@ const redirect = (data: string) => {
   }, 6000);
 };
 
-const showPassord = (id: string) => {
+const showPassord = (id: string, event: Event) => {
+  event.stopPropagation();
+
   id == "#pass1"
     ? (eyeIconOne.value = !eyeIconOne.value)
     : (eyeIconTwo.value = !eyeIconTwo.value);
