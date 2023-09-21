@@ -19,7 +19,10 @@
             @keyup="getPasswordOne(($event.target as HTMLInputElement).value)"
           />
 
-          <button class="eyeIconOne" @click="showPassord('#pass1')">
+          <button
+            class="eyeIconOne"
+            @click.prevent="showPassord('#pass1', $event)"
+          >
             <v-icon
               :icon="eyeIconOne ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"
             />
@@ -37,7 +40,10 @@
             {{ apiResponse }}
           </p>
 
-          <button class="eyeIconTwo" @click="showPassord('#pass2')">
+          <button
+            class="eyeIconTwo"
+            @click.prevent="showPassord('#pass2', $event)"
+          >
             <v-icon
               :icon="eyeIconTwo ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"
             />
@@ -90,7 +96,7 @@ defineProps({
   },
 
   showPassord: {
-    type: Function as PropType<(id: string) => void>,
+    type: Function as PropType<(id: string, event: Event) => void>,
     required: true,
   },
 
